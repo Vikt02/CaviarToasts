@@ -127,3 +127,17 @@ bool pointInNonConvexPolygon(std::vector<point> polygon, point const& p) {
     }
     return (cnt % 2 == 0);
 }
+
+std::vector<point> createRectangle(point const& p1, point const& p2, point const& a, double h) {
+    std::vector<point> rec;
+    rec.push_back(p1);
+    if (a.y < p1.y) {
+        rec.push_back(point(p1.x, p1.y - h));
+        rec.push_back(point(p2.x, p2.y - h));
+    } else {
+        rec.push_back(point(p1.x, p1.y + h));
+        rec.push_back(point(p2.x, p2.y + h));
+    }
+    rec.push_back(p2);
+    return rec;
+}
