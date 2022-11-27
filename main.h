@@ -15,6 +15,10 @@ struct point {
         this->x = p.x;
         this->y = p.y;
     }
+    point(double x, double y) {
+        this->x = x;
+        this->y = y;
+    }
 };
 
 struct vekt {
@@ -32,12 +36,12 @@ struct vekt {
         this->y = p2.y - p1.y;
     }
 
-    double vp(vekt const& v1, vekt const& v2) {
-        return v1.x * v2.y - v1.y * v2.x;
+    double vp(vekt const& v2) {
+        return this->x * v2.y - this->y * v2.x;
     }
 
-    double sp(vekt const& v1, vekt const& v2) {
-        return v1.x  * v2.x + v1.y * v2.y;
+    double sp(vekt const& v2) {
+        return this->x  * v2.x + this->y * v2.y;
     }
 
     double len() {
