@@ -81,3 +81,17 @@ std::vector<point> maxRectangleInTriangle(std::vector<point> const& triangle) {
     rec.push_back(d);
     return rec;
 }
+
+bool pointInPolygon(std::vector<point> const& polygon, point const& p) {
+    vekt v = vekt(polygon[0], polygon[1]), vp = vekt(polygon[0], p);
+    bool direction = (v.vp(vp) >= 0.);
+    for (int i = 1; i < polygon.size(); i++) {
+        int j = (i + 1) % polygon.size();
+        v = vekt(polygon[i], polygon[j]);
+        bool dir = (v.vp(vp) >= 0.);
+        if (dir != direction) {
+            return false;
+        }
+    }
+    return true;
+}
