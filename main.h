@@ -70,5 +70,14 @@ std::vector<point> maxRectangleInTriangle(std::vector<point> const& triangle) {
     vekt v1 = vekt(triangle[0], triangle[1]), v2 = vekt(triangle[1], triangle[2]), v3 = vekt(triangle[2], triangle[0]);
     point s1 = v1.middle(), s2 = v2.middle();
     vekt v3n = v3.normalize();
-
+    double t = v3n.sp(vekt(triangle[2], s1));
+    point d = point(v3n.x * t, v3n.y * t);
+    t = v3n.sp(vekt(triangle[2], s2));
+    point e = point(v3n.x * t, v3n.y * t);
+    std::vector<point> rec;
+    rec.push_back(s1);
+    rec.push_back(s2);
+    rec.push_back(e);
+    rec.push_back(d);
+    return rec;
 }
