@@ -64,6 +64,18 @@ struct vekt {
     vekt normalize() {
         return vekt(this->x / this->len(), this->y / this->len(), this->p1);
     }
+
+    bool has_point(point const& p) {
+        vekt v = vekt(this->p1, p);
+        if (this->vp(v) == 0.) {
+            double min_x = std::min(this->p1.x, this->p2.x), max_x = std::max(this->p1.x, this->p2.x);
+            double min_y = std::min(this->p1.y, this->p2.y), max_y = std::max(this->p1.y, this->p2.y);
+            if (p.x >= min_x && p.x <= max_x && p.y >= min_y && p.y <= max_y) {
+                return true;
+            }
+        }
+        return false;
+    }
 };
 
 std::vector<point> maxRectangleInTriangle(std::vector<point> const& triangle) {
@@ -87,9 +99,31 @@ bool pointInConvexPolygon(std::vector<point> const& polygon, point const& p) {
         int j = (i + 1) % polygon.size();
         vekt v1 = vekt(polygon[i], polygon[j]);
         vekt v2 = vekt(polygon[i], p);
-        if (v1.vp(v2) < 0) {
+        if (v1.vp(v2) > 0) {
             return false;
         }
     }
     return true;
+}
+
+bool pointInNonConvexPolygon(std::vector<point> polygon, point const& p) {
+    int cnt = 0;
+    for (int i = 0; i < polygon.size(); i++) {
+        int j = (i + 1) % polygon.size();
+        vekt v = vekt(polygon[i], polygon[j]);
+        vekt v2 = vekt(polygon[i], p);
+        if (v.has_point(p)) {
+            return true;
+        }
+        if (polygon[i].y == polygon[j].y || p.y == std::min(polygon[i].y, polygon[j].y)) {
+            continue;
+        }
+        if (p.y == std::max(polygon[i].y, polygon[j].y) && p.x < std::min(polygon[i].x, polygon[j].x)) {
+            cnt++;
+        } else if (p.y <= std::max(polygon[i].y, polygon[j].y) && p.y >= std::min(polygon[i].y, polygon[j].y)
+                    && v.vp(v2) < 0) {
+            cnt++;
+        }
+    }
+    return (cnt % 2 == 0);
 }
