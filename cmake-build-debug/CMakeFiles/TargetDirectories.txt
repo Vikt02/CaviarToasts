@@ -1,3 +1,3 @@
-/home/viktor/Documents/cumtakers/cmake-build-debug/CMakeFiles/cumtakers.dir
-/home/viktor/Documents/cumtakers/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/viktor/Documents/cumtakers/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/viktor/Desktop/cumtakers/cmake-build-debug/CMakeFiles/cumtakers.dir
+/home/viktor/Desktop/cumtakers/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/viktor/Desktop/cumtakers/cmake-build-debug/CMakeFiles/rebuild_cache.dir

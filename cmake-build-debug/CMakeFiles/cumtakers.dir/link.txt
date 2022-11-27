@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/cumtakers.dir/main.cpp.o -o cumtakers 
